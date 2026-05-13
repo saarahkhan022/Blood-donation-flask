@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>life Donor — Emergency Donor Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Ambient background blobs -->
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+  <div class="bg-blob blob3"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-drop">🩸</span>
+        <span class="logo-text">Life<em>Donor</em></span>
+      </div>
+      <p class="tagline">Emergency Donor Finder · Save Lives Now</p>
+      <div class="pulse-ring"></div>
+    </div>
+  </header>
+
+  <!-- NAV TABS -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="register">
+      <span class="tab-icon">📋</span> Register
+    </button>
+    <button class="tab-btn" data-tab="search">
+      <span class="tab-icon">🔍</span> Search
+    </button>
+    <button class="tab-btn emergency-tab" data-tab="emergency">
+      <span class="tab-icon">🚨</span> Emergency
+    </button>
+    <button class="tab-btn" data-tab="history">
+      <span class="tab-icon">📜</span> History
+    </button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- ── TAB 1: REGISTER ─────────────────────────────────────── -->
+    <section class="tab-panel active" id="tab-register">
+      <div class="panel-header">
+        <h2>Register as a <span class="hl">Blood Donor</span></h2>
+        <p>Join our network and help save lives in your community.</p>
+      </div>
+      <div class="card form-card">
+        <div class="form-grid">
+          <div class="field">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" placeholder="e.g. Naina">
+          </div>
+          <div class="field">
+            <label>Age</label>
+            <input type="number" id="reg-age" placeholder="e.g. 21" min="18" max="65">
+          </div>
+          <div class="field"> 
+            <label>Phone Number</label>
+            <input type="tel" id="reg-phone" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="field">
+            <label>City / Area</label>
+            <input type="text" id="reg-city" placeholder="e.g. Dehradun, Premnagar">
+          </div>
+          <div class="field">
+            <label>Blood Group</label>
+            <select id="reg-bg">
+              <option>A+</option><option>A−</option>
+              <option>B+</option><option>B−</option>
+              <option>AB+</option><option>AB−</option>
+              <option>O+</option><option>O−</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Last Donated</label>
+            <input type="text" id="reg-last" placeholder="YYYY-MM-DD or Never" value="Never">
+          </div>
+        </div>
+        <div class="toggle-row">
+          <label class="toggle-label">
+            <input type="checkbox" id="reg-available" checked>
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            Available to donate
+          </label>
+        </div>
+        <button class="btn btn-primary" id="btn-register">
+          Register Donor
+        </button>
+        <div class="alert" id="reg-alert"></div>
+      </div>
+    </section>
+
+    <!-- ── TAB 2: SEARCH ───────────────────────────────────────── -->
+    <section class="tab-panel" id="tab-search">
+      <div class="panel-header">
+        <h2>Find Nearby <span class="hl">Donors</span></h2>
+        <p>Search by blood group and location.</p>
+      </div>
+      <div class="card search-bar-card">
+        <div class="search-row">
+          <div class="field compact">
+            <label>Blood Group</label>
+            <select id="s-bg">
+              <option>All</option>
+              <option>A+</option><option>A−</option>
+              <option>B+</option><option>B−</option>
+              <option>AB+</option><option>AB−</option>
+              <option>O+</option><option>O−</option>
+            </select>
+          </div>
+          <div class="field compact grow">
+            <label>City / Area</label>
+            <input type="text" id="s-city" placeholder="Leave blank for all cities">
+          </div>
+          <button class="btn btn-primary search-btn" id="btn-search">Search</button>
+        </div>
+      </div>
+
+      <div id="search-results" class="results-area">
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <p>Use the search bar above to find donors.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TAB 3: EMERGENCY ────────────────────────────────────── -->
+    <section class="tab-panel" id="tab-emergency">
+      <div class="panel-header emergency-header">
+        <h2>🚨 Emergency <span class="hl-red">Blood Request</span></h2>
+        <p class="em-warn">Find available matching donors instantly. Every second counts.</p>
+      </div>
+      <div class="card form-card">
+        <div class="form-grid">
+          <div class="field">
+            <label>Patient Name</label>
+            <input type="text" id="em-name" placeholder="Patient's full name">
+          </div>
+          <div class="field">
+            <label>Hospital Name</label>
+            <input type="text" id="em-hospital" placeholder="Hospital / clinic name">
+          </div>
+          <div class="field">
+            <label>City / Area</label>
+            <input type="text" id="em-city" placeholder="Search in this city">
+          </div>
+          <div class="field">
+            <label>Contact Person</label>
+            <input type="text" id="em-contact" placeholder="Your phone number">
+          </div>
+          <div class="field">
+            <label>Required Blood Group</label>
+            <select id="em-bg">
+              <option>A+</option><option>A−</option>
+              <option>B+</option><option>B−</option>
+              <option>AB+</option><option>AB−</option>
+              <option>O+</option><option>O−</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-danger" id="btn-emergency">
+          <span>🔍</span> Find Matching Donors Now
+        </button>
+      </div>
+
+      <div id="em-results" class="em-results-area" style="display:none"></div>
+    </section>
+
+    <!-- ── TAB 4: HISTORY ──────────────────────────────────────── -->
+    <section class="tab-panel" id="tab-history">
+      <div class="panel-header">
+        <h2>Donation <span class="hl">History</span></h2>
+        <p>All donations and emergency requests.</p>
+      </div>
+      <div class="history-actions">
+        <button class="btn btn-outline" id="btn-refresh-history">🔄 Refresh</button>
+        <button class="btn btn-danger-outline" id="btn-clear-history">🗑 Clear History</button>
+      </div>
+      <div id="history-area" class="results-area"></div>
+    </section>
+
+  </main>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
